@@ -1,0 +1,196 @@
+<!-- Odoo Apps description page for pos_teams_segregation (Odoo 16.0). Inline styles only: apps.odoo.com strips <style> and <script> blocks. -->
+<section style="max-width:1120px;margin:0 auto;padding:0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#2b2b33;">
+
+<!-- ============================== HERO ============================== -->
+<div style="background:linear-gradient(120deg,#017E84 0%,#3d6b78 45%,#714B67 100%);border-radius:18px;padding:48px 40px 40px;color:#ffffff;margin-top:12px;">
+  <div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-bottom:10px;">Point of Sale &middot; Sales Teams &middot; Employees &middot; Access Control</div>
+  <h1 style="font-size:40px;line-height:1.15;font-weight:700;margin:0 0 14px;color:#ffffff;">POS Teams Segregation</h1>
+  <p style="font-size:19px;line-height:1.55;max-width:760px;margin:0 0 24px;color:#ffffff;opacity:.95;">Run every shop with its own Sales Team. Team membership comes from <b>employees</b>, only the shop&rsquo;s team can log in to its POS, and regular POS users see and open only the shops of their own team, while POS Administrators keep access to all shops.</p>
+  <div>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Odoo 16.0</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Community &amp; Enterprise</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">35 automated tests</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">English &amp; Arabic</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Technical name: pos_teams_segregation</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">LGPL-3</span>
+  </div>
+</div>
+
+<!-- ============================== KEY NUMBERS ============================== -->
+<div style="display:flex;flex-wrap:wrap;margin:28px -8px 8px;">
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">1 team per shop</div><div style="font-size:15px;color:#555;">Sales Team is mandatory on every Point of Sale</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">0 manual sync</div><div style="font-size:15px;color:#555;">Employees with a user become team members automatically</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">5 secured models</div><div style="font-size:15px;color:#555;">Shops, sessions, orders, payments and order analysis</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">35 tests</div><div style="font-size:15px;color:#555;">Membership, auto-team, POS login, access and upgrade</div></div>
+</div>
+
+<!-- ============================== WHY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Why this module</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Retailers with several branches need each shop to be run by its own team, and need cashiers of one branch kept out of the others.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -10px;">
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #f1d6d6;background:#fff8f8;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#b33939;margin:0 0 12px;">In standard Odoo 16</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li>Sales Team members are <b>users only</b>: cashiers without an Odoo login cannot belong to a team.</li>
+      <li>The <b>Sales Team</b> of a Point of Sale is <b>optional</b>, so shops end up with no team.</li>
+      <li><b>Log in with Employees</b> lists any employee of the company, or a hand-picked list unrelated to the shop&rsquo;s team.</li>
+      <li>Every POS user can <b>see and open every shop</b> of the company.</li>
+      <li>POS <b>sessions, orders and payments</b> of all branches are visible to every POS user.</li>
+      <li>Opening another shop is one URL away: <b>/pos/ui?config_id=&hellip;</b></li>
+    </ul>
+  </div>
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #cfe7e7;background:#f4fbfb;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#017E84;margin:0 0 12px;">With this module</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li>Teams are built from <b>employees</b>; employees with a user are synchronised to standard team members.</li>
+      <li><b>Sales Team is required</b> on every shop, with a safe default for new shops.</li>
+      <li>The POS cashier list shows <b>only the shop&rsquo;s team employees</b>, filtered on the server.</li>
+      <li>Regular POS users see and open <b>only the shops of their own team</b>.</li>
+      <li><b>Record rules</b> segregate sessions, orders, payments and order analysis by team.</li>
+      <li>The POS URL, session creation and data loading <b>check team access</b> on the server.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================== HOW IT WORKS ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">How it works</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Four steps, all in screens you already know.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;">
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">1</div><div style="font-weight:700;margin-bottom:4px;">Build teams</div><div style="font-size:14px;color:#555;">Add employees on the new <b>Employees</b> tab of each Sales Team, or set <b>Sales Teams</b> on the employee.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">2</div><div style="font-weight:700;margin-bottom:4px;">Assign shops</div><div style="font-size:14px;color:#555;">Give every Point of Sale its <b>Sales Team</b>. The field is mandatory.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">3</div><div style="font-weight:700;margin-bottom:4px;">Log in by team</div><div style="font-size:14px;color:#555;">With <b>Multi Employees per Session</b>, only the team&rsquo;s employees appear on the POS login screen.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #cfe7e7;background:#f4fbfb;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#017E84;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">4</div><div style="font-weight:700;margin-bottom:4px;">Stay segregated</div><div style="font-size:14px;color:#555;">Regular POS users only reach their team&rsquo;s shops, sessions and orders; administrators see everything.</div></div>
+</div>
+
+<!-- ============================== FEATURES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Features</h2>
+<p style="font-size:16px;color:#555;margin:0 0 6px;">Screenshots use demo data: two branches, <b>Riyadh Showroom</b> (team: Faisal, Noura, Sara) and <b>Jeddah Mall Kiosk</b> (team: Khalid, Reem and Marc Demo, who has an Odoo user).</p>
+
+<div style="margin:36px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Where to find it</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">No new menus: everything lives in standard screens</h3>
+  <ul style="font-size:15px;line-height:1.7;margin:0;padding-left:20px;color:#3a3a42;">
+    <li><b>Sales &rsaquo; Configuration &rsaquo; Sales Teams</b>: new <b>Employees</b> tab and <b>Employees</b> smart button.</li>
+    <li><b>Employees &rsaquo; Employees</b>: new <b>Sales Teams</b> field on the employee form, and a <b>Sales Team</b> search filter.</li>
+    <li><b>Point of Sale &rsaquo; Configuration &rsaquo; Point of Sale</b>: <b>Sales Team</b> under the shop name; <b>Allowed Employees</b> limited to the team.</li>
+    <li><b>Point of Sale &rsaquo; Configuration &rsaquo; Settings &rsaquo; Sales &rsaquo; Sales Team</b>: required for the selected shop.</li>
+    <li><b>Point of Sale &rsaquo; Dashboard</b>: each shop card shows its Sales Team.</li>
+  </ul>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 1</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Sales Teams built from employees</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The Sales Team form gets an <b>Employees</b> tab. Cashiers without an Odoo login can belong to a team and still log in to its shops. Employees linked to a user are added automatically as team members (salespersons).</p>
+  <img src="pts_02_team_employees.png" alt="Sales Team form with the Employees tab listing three showroom employees" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 2</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Team membership from the employee side, synchronised to users</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Set <b>Sales Teams</b> directly on the employee. When the employee has a user, a standard team membership is created and flagged <b>Managed by Employee</b>; it is archived automatically when the employee leaves the team, is archived, or is linked to another user. Manually added members are left as they are.</p>
+  <img src="pts_03_employee_sales_teams.png" alt="Employee form showing the Sales Teams field set to Jeddah Mall Team" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="pts_04_team_members_managed.png" alt="Team members list with the Managed by Employee column ticked for Marc Demo" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <div style="font-size:13px;color:#777;margin:6px 0 0;">Marc Demo&rsquo;s membership was created from his employee; the Sales membership of the administrator stays manual.</div>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 3</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Salesperson selects the Sales Team automatically</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Because employees become standard team members, Odoo&rsquo;s own salesperson &rarr; team logic now follows them on quotations, invoices and leads. No extra onchange fights the standard behaviour.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:15px;">
+    <thead><tr style="background:#714B67;color:#fff;"><th style="text-align:left;padding:10px 14px;">Salesperson is in&hellip;</th><th style="text-align:left;padding:10px 14px;">Sales Team selected</th></tr></thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;">One team</td><td style="padding:10px 14px;">That team</td></tr>
+      <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;">Several teams (Multi Teams enabled)</td><td style="padding:10px 14px;">The current team when it is still one of theirs, otherwise their first team by sequence</td></tr>
+      <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;">No team</td><td style="padding:10px 14px;">Standard Odoo fallback team of the company, the same for every unassigned salesperson</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 4</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Sales Team mandatory on every shop</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The <b>Sales Team</b> sits right under the shop name and cannot be left empty. New shops get the standard <b>Point of Sale</b> team by default, the team must belong to the shop&rsquo;s company, and a team used by a shop cannot be deleted (archive it instead). The dashboard shows each shop&rsquo;s team.</p>
+  <img src="pts_01_dashboard.png" alt="Point of Sale dashboard with the Sales Team shown on each shop card" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="pts_06_settings_sales_team.png" alt="POS settings Sales section with the required Sales Team field" style="width:100%;max-width:1000px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 5</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">POS employee login limited to the shop&rsquo;s team</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">With <b>Multi Employees per Session</b> (Log in with Employees), <b>Allowed Employees</b> can only be chosen among the team&rsquo;s employees; leave it empty to allow the whole team. The cashier list is filtered on the server, so other employees&rsquo; badges and PINs are never sent to the POS. A POS Administrator who opens the session keeps their own employee, so they can never lock themselves out.</p>
+  <img src="pts_05_shop_form_team.png" alt="Shop form with Sales Team and Allowed Employees" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <div style="display:flex;flex-wrap:wrap;margin:0 -10px;">
+    <div style="flex:1 1 440px;margin:10px;">
+      <img src="pts_08_allowed_employees_team_only.png" alt="Allowed Employees dropdown proposing only the remaining team employee" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+      <div style="font-size:13px;color:#777;margin:6px 0 0;">Only team employees can be picked.</div>
+    </div>
+    <div style="flex:1 1 440px;margin:10px;">
+      <img src="pts_07_pos_login_team_cashiers.png" alt="POS Change Cashier dialog listing only the Riyadh team and the administrator" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+      <div style="font-size:13px;color:#777;margin:6px 0 0;">Riyadh Showroom: the team&rsquo;s cashiers plus the administrator who opened the session.</div>
+    </div>
+  </div>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 6</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Shop access segregation that cannot be bypassed</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">A regular <b>Point of Sale / User</b> only sees the shops of a Sales Team they lead, are a member of, or are an employee of. <b>Point of Sale / Administrator</b> keeps access to every shop. The rule is enforced by record rules and by explicit server checks, not just by hiding menus.</p>
+  <div style="background:#f4fbfb;border-left:4px solid #017E84;border-radius:8px;padding:16px 20px;font-size:15px;line-height:1.6;"><b>Checked on the server:</b> the shop list and dashboard, opening or resuming a session, creating a session, loading POS data, and the <b>/pos/ui</b> URL (which standard Odoo resolves with superuser rights). A user removed from the team loses access immediately.</div>
+</div>
+
+<!-- ============================== CORNER CASES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:44px 0 6px;color:#2b2b33;">Built for real-world corner cases</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Behaviour you can predict, including in single-team mode and on existing databases.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;font-size:15px;line-height:1.55;">
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>One team per salesperson (standard default)</b><br/><span style="color:#555;">Adding an employee to a team moves them out of their previous team, exactly like standard user memberships; the team form warns before saving.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Multi Teams enabled</b><br/><span style="color:#555;">Employees can belong to several teams, and their users become members of each of them.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Employees without a user</b><br/><span style="color:#555;">They stay team employees and can log in to the team&rsquo;s POS, with no fake user membership.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Employee changes</b><br/><span style="color:#555;">Archiving an employee, deleting it or changing its user updates memberships and shop access immediately.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Installing on an existing database</b><br/><span style="color:#555;">Existing shops get a Sales Team, and their allowed employees join that team so every shop keeps working. Anything that would move someone between teams is skipped and logged for review.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Employee leaves the team</b><br/><span style="color:#555;">They are also removed from the Allowed Employees of the team&rsquo;s shops.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Team without employees</b><br/><span style="color:#555;">A shop using Log in with Employees refuses to open a session with a clear message instead of an empty login screen.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Multi-company</b><br/><span style="color:#555;">Team, shop and employees must share the same company; users must have access to the team&rsquo;s company.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Archived memberships</b><br/><span style="color:#555;">Access is computed from active memberships and active employees only, whatever the context of the request.</span></div>
+</div>
+
+<!-- ============================== SECURITY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:44px 0 6px;color:#2b2b33;">Security</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Record rules on shops, sessions, orders, payments and the Orders Analysis report.</p>
+<table style="width:100%;border-collapse:collapse;font-size:15px;">
+  <thead><tr style="background:#714B67;color:#fff;"><th style="text-align:left;padding:10px 14px;">Who</th><th style="text-align:left;padding:10px 14px;">Sees</th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;">Point of Sale / User</td><td style="padding:10px 14px;">Shops, sessions, orders, payments and order analysis of Sales Teams they lead, are an active member of, or are an active employee of</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;">Point of Sale / Administrator</td><td style="padding:10px 14px;">All shops and all POS data</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;">POS login screen</td><td style="padding:10px 14px;">Employees of the shop&rsquo;s team (intersected with Allowed Employees when set), plus the opening POS Administrator</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;">Multi-company</td><td style="padding:10px 14px;">Standard company rules still apply on top of team segregation</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== TECHNICAL ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:44px 0 6px;color:#2b2b33;">Technical details</h2>
+<table style="width:100%;border-collapse:collapse;font-size:15px;">
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Odoo version</td><td style="padding:10px 14px;">16.0, Community and Enterprise</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Depends on</td><td style="padding:10px 14px;"><code>pos_sale</code>, <code>pos_hr</code>, <code>hr</code> (the POS Sales Team field comes from <code>pos_sale</code>)</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Menus</td><td style="padding:10px 14px;">None added; extends Sales Teams, Employees, Point of Sale shops, dashboard and settings</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Settings</td><td style="padding:10px 14px;">Point of Sale &rsaquo; Configuration &rsaquo; Settings &rsaquo; Sales &rsaquo; Sales Team (required). Honours Sales &rsaquo; Settings &rsaquo; Multi Teams</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Models extended</td><td style="padding:10px 14px;"><code>crm.team</code>, <code>crm.team.member</code>, <code>hr.employee</code>, <code>pos.config</code>, <code>pos.session</code>, <code>res.users</code>, <code>res.config.settings</code>; no new models</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Install &amp; upgrade</td><td style="padding:10px 14px;">Pre-install hook assigns a team to existing shops; post-install hook and migration keep their allowed employees working</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Automated tests</td><td style="padding:10px 14px;">35 tests: employee-based membership, single/multi team, salesperson auto-team, mandatory shop team, POS employee filtering, shop/session/order segregation, settings and upgrade repair</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Languages</td><td style="padding:10px 14px;">English and Arabic (<code>i18n/ar.po</code>)</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">License</td><td style="padding:10px 14px;">LGPL-3</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== CONTACT ============================== -->
+<div style="margin:52px 0 40px;background:linear-gradient(120deg,#714B67 0%,#017E84 100%);border-radius:18px;padding:36px 40px;color:#fff;">
+  <h2 style="font-size:26px;font-weight:700;margin:0 0 8px;color:#fff;">Support &amp; customization</h2>
+  <p style="font-size:16px;line-height:1.6;margin:0 0 20px;color:#fff;opacity:.95;">Questions, a demo, or an adaptation to your own process? Get in touch.</p>
+  <a href="mailto:ibrahim.yahiah@gmail.com" style="display:inline-block;background:#fff;color:#714B67;font-weight:700;text-decoration:none;border-radius:8px;padding:12px 22px;margin:0 12px 10px 0;">&#9993;  ibrahim.yahiah@gmail.com</a>
+  <a href="https://www.linkedin.com/in/ibrahim-yahia" target="_blank" rel="noopener" style="display:inline-block;border:2px solid #fff;color:#fff;font-weight:700;text-decoration:none;border-radius:8px;padding:10px 22px;margin:0 0 10px 0;">LinkedIn: Ibrahim Yahia</a>
+  <p style="font-size:13px;margin:14px 0 0;opacity:.8;color:#fff;">Author: Ibrahim Yahia &middot; License: LGPL-3</p>
+</div>
+
+</section>
