@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_team_view_form_pts" model="ir.ui.view">
+        <field name="name">crm.team.form.pos.teams.segregation</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-info text-center" role="alert" invisible="not employee_warning">
+                    <field name="employee_warning"/>
+                </div>
+            </xpath>
+            <div name="button_box" position="inside">
+                <button name="action_pts_view_employees" type="object" class="oe_stat_button" icon="fa-users">
+                    <field name="employee_count" widget="statinfo" string="Employees"/>
+                </button>
+            </div>
+            <xpath expr="//notebook/page[@name='members_users']" position="before">
+                <page string="Employees" name="pts_employees">
+                    <div class="text-muted mb-2">Team membership is managed from employees: employees linked to a user are added automatically as team members (salespersons). Employees without a user can still log in to this team's Point of Sale shops.</div>
+                    <field name="employee_ids">
+                        <list>
+                            <field name="name"/>
+                            <field name="job_title"/>
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_team_member_view_tree_pts" model="ir.ui.view">
+        <field name="name">crm.team.member.tree.pos.teams.segregation</field>
+        <field name="model">crm.team.member</field>
+        <field name="inherit_id" ref="sales_team.crm_team_member_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="employee_managed" optional="show"/>
+            </field>
+        </field>
+    </record>
+</odoo>

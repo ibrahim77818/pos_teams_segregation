@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Shop segregation, Odoo 20.0 access model (ir.access replaces ir.rule).
+
+        Standard point_of_sale grants POS users a *permission* on these models
+        without domain; permissions are OR-ed, so segregation must be a
+        *restriction* (no group, AND-ed for every user). The restriction exempts
+        users outside the POS User group and POS Administrators, which matches
+        the previous behaviour (rule for POS User only + unrestricted rule for
+        POS Administrator).
+
+        user.pts_crm_team_ids is computed with explicit active filters
+        (independent of active_test) and refreshed whenever a membership changes.
+    -->
+    <record id="access_pts_pos_config_team" model="ir.access">
+        <field name="name">POS Teams Segregation: shops of my Sales Teams</field>
+        <field name="model_id" ref="point_of_sale.model_pos_config"/>
+        <field name="operation">crud</field>
+        <field name="domain">[] if (not user.has_group('point_of_sale.group_pos_user') or user.has_group('point_of_sale.group_pos_manager')) else [('crm_team_id', 'in', user.pts_crm_team_ids.ids)]</field>
+    </record>
+
+    <record id="access_pts_pos_session_team" model="ir.access">
+        <field name="name">POS Teams Segregation: sessions of my Sales Teams</field>
+        <field name="model_id" ref="point_of_sale.model_pos_session"/>
+        <field name="operation">crud</field>
+        <field name="domain">[] if (not user.has_group('point_of_sale.group_pos_user') or user.has_group('point_of_sale.group_pos_manager')) else [('config_id.crm_team_id', 'in', user.pts_crm_team_ids.ids)]</field>
+    </record>
+
+    <record id="access_pts_pos_order_team" model="ir.access">
+        <field name="name">POS Teams Segregation: orders of my Sales Teams</field>
+        <field name="model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="operation">crud</field>
+        <field name="domain">[] if (not user.has_group('point_of_sale.group_pos_user') or user.has_group('point_of_sale.group_pos_manager')) else [('session_id.config_id.crm_team_id', 'in', user.pts_crm_team_ids.ids)]</field>
+    </record>
+
+    <record id="access_pts_pos_payment_team" model="ir.access">
+        <field name="name">POS Teams Segregation: payments of my Sales Teams</field>
+        <field name="model_id" ref="point_of_sale.model_pos_payment"/>
+        <field name="operation">crud</field>
+        <field name="domain">[] if (not user.has_group('point_of_sale.group_pos_user') or user.has_group('point_of_sale.group_pos_manager')) else [('session_id.config_id.crm_team_id', 'in', user.pts_crm_team_ids.ids)]</field>
+    </record>
+
+    <record id="access_pts_report_pos_order_team" model="ir.access">
+        <field name="name">POS Teams Segregation: order analysis of my Sales Teams</field>
+        <field name="model_id" ref="point_of_sale.model_report_pos_order"/>
+        <field name="operation">crud</field>
+        <field name="domain">[] if (not user.has_group('point_of_sale.group_pos_user') or user.has_group('point_of_sale.group_pos_manager')) else [('config_id.crm_team_id', 'in', user.pts_crm_team_ids.ids)]</field>
+    </record>
+</odoo>

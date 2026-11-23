@@ -1,0 +1,177 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* pos_teams_segregation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-23 00:00+0000\n"
+"PO-Revision-Date: 2026-11-23 00:00+0000\n"
+"Last-Translator: Ibrahim Yahia\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_teams_segregation
+#. odoo-python
+#: code:addons/pos_teams_segregation/models/crm_team.py:0
+#, python-format
+msgid "Adding %(employees)s to this team will remove them from their current teams (%(teams)s). To add employees to several teams, activate the Multi Teams option in Sales settings."
+msgstr ""
+
+#. module: pos_teams_segregation
+#. odoo-python
+#: code:addons/pos_teams_segregation/models/hr_employee.py:0
+#, python-format
+msgid "Employee %(employee)s can only belong to one Sales Team. To allow several teams, activate the Multi Teams option in Sales settings."
+msgstr ""
+
+#. module: pos_teams_segregation
+#. odoo-python
+#: code:addons/pos_teams_segregation/models/hr_employee.py:0
+#, python-format
+msgid "Employee %(employee)s cannot belong to Sales Teams of another company: %(teams)s."
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,field_description:pos_teams_segregation.field_crm_team__employee_warning
+msgid "Employee Membership Warning"
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model_terms:ir.ui.view,arch_db:pos_teams_segregation.crm_team_view_form_pts
+msgid "Employees"
+msgstr ""
+
+#. module: pos_teams_segregation
+#. odoo-python
+#: code:addons/pos_teams_segregation/models/crm_team.py:0
+#, python-format
+msgid "Employees %(employees)s do not belong to the company %(company)s of the Sales Team %(team)s."
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,help:pos_teams_segregation.field_crm_team__employee_ids
+msgid "Employees belonging to this Sales Team. Employees linked to a user are automatically added as team members (salespersons). Employees without a user can still log in to this team's Point of Sale shops."
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,field_description:pos_teams_segregation.field_crm_team__employee_count
+msgid "Employees Count"
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,help:pos_teams_segregation.field_pos_config__pts_team_employee_ids
+#: model:ir.model.fields,help:pos_teams_segregation.field_res_config_settings__pos_pts_team_employee_ids
+msgid "Employees of the shop's Sales Team: only they can log in to this shop."
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,field_description:pos_teams_segregation.field_crm_team_member__employee_managed
+msgid "Managed by Employee"
+msgstr ""
+
+#. module: pos_teams_segregation
+#. odoo-python
+#: code:addons/pos_teams_segregation/models/pos_config.py:0
+#, python-format
+msgid "Only employees of the Sales Team %(team)s can be allowed on the Point of Sale %(pos)s. Not team members: %(employees)s."
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model_terms:ir.ui.view,arch_db:pos_teams_segregation.pos_config_view_form_pts
+#: model_terms:ir.ui.view,arch_db:pos_teams_segregation.res_config_settings_view_form_pts_sale
+msgid "Only members of this Sales Team (and POS Administrators) can access this shop."
+msgstr ""
+
+#. module: pos_teams_segregation
+#. odoo-python
+#: code:addons/pos_teams_segregation/models/pos_config.py:0
+#, python-format
+msgid "Please set a Sales Team on the Point of Sale %s."
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,field_description:pos_teams_segregation.field_res_users__pts_crm_team_ids
+msgid "POS Segregation Sales Teams"
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model_terms:ir.ui.view,arch_db:pos_teams_segregation.view_employee_filter_pts
+#: model_terms:ir.ui.view,arch_db:pos_teams_segregation.view_pos_config_kanban_pts
+msgid "Sales Team"
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,field_description:pos_teams_segregation.field_pos_config__pts_team_employee_ids
+msgid "Sales Team Employees"
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,field_description:pos_teams_segregation.field_res_config_settings__pos_pts_team_employee_ids
+msgid "Sales Team Employees (PoS)"
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,field_description:pos_teams_segregation.field_hr_employee__crm_team_ids
+msgid "Sales Teams"
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,help:pos_teams_segregation.field_hr_employee__crm_team_ids
+msgid "Sales Teams this employee belongs to. When the employee is linked to a user, that user is automatically a member (salesperson) of these teams."
+msgstr ""
+
+#. module: pos_teams_segregation
+#. odoo-python
+#: model:ir.model.fields,field_description:pos_teams_segregation.field_crm_team__employee_ids
+#: code:addons/pos_teams_segregation/models/crm_team.py:0
+msgid "Team Employees"
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model_terms:ir.ui.view,arch_db:pos_teams_segregation.crm_team_view_form_pts
+msgid "Team membership is managed from employees: employees linked to a user are added automatically as team members (salespersons). Employees without a user can still log in to this team's Point of Sale shops."
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,help:pos_teams_segregation.field_res_users__pts_crm_team_ids
+msgid "Technical: Sales Teams giving this user access to POS shops (team leader, active member or active employee of the team)."
+msgstr ""
+
+#. module: pos_teams_segregation
+#. odoo-python
+#: code:addons/pos_teams_segregation/models/pos_config.py:0
+#, python-format
+msgid "The Point of Sale %(pos)s uses 'Log in with Employees' but its Sales Team %(team)s has no employees. Add employees to the Sales Team first."
+msgstr ""
+
+#. module: pos_teams_segregation
+#. odoo-python
+#: code:addons/pos_teams_segregation/models/pos_config.py:0
+#, python-format
+msgid "The Sales Team %(team)s of the Point of Sale %(pos)s must belong to the same company (%(company)s)."
+msgstr ""
+
+#. module: pos_teams_segregation
+#: model:ir.model.fields,help:pos_teams_segregation.field_crm_team_member__employee_managed
+msgid "This membership is synchronised from the employees of the Sales Team. It is archived automatically when the employee leaves the team."
+msgstr ""
+
+#. module: pos_teams_segregation
+#. odoo-python
+#: code:addons/pos_teams_segregation/models/crm_team.py:0
+#, python-format
+msgid "Users %(users)s linked to employees of the Sales Team %(team)s have no access to the company %(company)s."
+msgstr ""
+
+#. module: pos_teams_segregation
+#. odoo-python
+#: code:addons/pos_teams_segregation/models/pos_config.py:0
+#, python-format
+msgid "You cannot access the Point of Sale %(pos)s: you are not a member of its Sales Team %(team)s."
+msgstr ""
