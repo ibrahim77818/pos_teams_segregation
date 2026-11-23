@@ -1,0 +1,138 @@
+# -*- coding: utf-8 -*-
+from odoo import Command, _, api, fields, models
+from odoo.exceptions import AccessError, UserError, ValidationError
+
+
+class PosConfig(models.Model):
+    _inherit = 'pos.config'
+
+    # Field defined by pos_sale. Required + "set null" is refused by the ORM,
+    # so the deletion policy becomes "restrict": a team used by a shop cannot
+    # be deleted (it can still be archived).
+    crm_team_id = fields.Many2one(
+        required=True, ondelete='restrict',
+        default=lambda self: self._default_pts_crm_team_id())
+    pts_team_employee_ids = fields.Many2many(
+        'hr.employee', string='Sales Team Employees',
+        related='crm_team_id.employee_ids',
+        help="Employees of the shop's Sales Team: only they can log in to this shop.")
+
+    @api.model
+    def _default_pts_crm_team_id(self):
+        """Default Sales Team so that every shop creation path (settings
+        '+ New Shop', demo data, other modules, tests) gets a valid team."""
+        company = self.env.company
+        Team = self.env['crm.team']
+        pos_team = self.env.ref('sales_team.pos_sales_team', raise_if_not_found=False)
+        if pos_team and pos_team.active and (not pos_team.company_id or pos_team.company_id == company):
+            return pos_team
+        team = Team._get_default_team_id(domain=[('company_id', 'in', [company.id, False])])
+        if team and (not team.company_id or team.company_id == company):
+            return team
+        return Team.search([('company_id', 'in', [company.id, False])], limit=1)
+
+    # ------------------------------------------------------------
+    # CONSTRAINTS / ONCHANGE
+    # ------------------------------------------------------------
+
+    @api.constrains('crm_team_id', 'company_id')
+    def _check_pts_crm_team_company(self):
+        for config in self:
+            team = config.crm_team_id
+            if team.company_id and team.company_id != config.company_id:
+                raise ValidationError(_(
+                    "The Sales Team %(team)s of the Point of Sale %(pos)s must belong to "
+                    "the same company (%(company)s).",
+                    team=team.name, pos=config.name, company=config.company_id.name))
+
+    # ------------------------------------------------------------
+    # pos_hr (17.0): allowed employees are split into basic and
+    # advanced (manager) rights
+    # ------------------------------------------------------------
+
+    def _pts_shop_employees(self):
+        """Employees explicitly allowed on the shop (basic + advanced rights)."""
+        self.ensure_one()
+        return self.basic_employee_ids | self.advanced_employee_ids
+
+    def _pts_unlink_shop_employees(self, employees):
+        """Remove employees from both basic and advanced rights."""
+        for config in self:
+            vals = {}
+            for fname in ('basic_employee_ids', 'advanced_employee_ids'):
+                to_remove = config[fname] & employees
+                if to_remove:
+                    vals[fname] = [Command.unlink(e.id) for e in to_remove]
+            if vals:
+                config.write(vals)
+
+    @api.constrains('basic_employee_ids', 'advanced_employee_ids', 'crm_team_id')
+    def _check_pts_employee_ids(self):
+        for config in self:
+            outsiders = config._pts_shop_employees() - config.crm_team_id.employee_ids
+            if outsiders:
+                raise ValidationError(_(
+                    "Only employees of the Sales Team %(team)s can be allowed on the Point of "
+                    "Sale %(pos)s. Not team members: %(employees)s.",
+                    team=config.crm_team_id.name, pos=config.name,
+                    employees=", ".join(outsiders.mapped('name'))))
+
+    @api.onchange('crm_team_id')
+    def _onchange_pts_crm_team_id(self):
+        team_employees = self.crm_team_id.employee_ids
+        self.basic_employee_ids = self.basic_employee_ids & team_employees
+        self.advanced_employee_ids = self.advanced_employee_ids & team_employees
+
+    # ------------------------------------------------------------
+    # ACCESS
+    # ------------------------------------------------------------
+
+    def _pts_user_can_access(self, user):
+        """POS managers access every shop; other users only the shops of a
+        Sales Team they lead, are an active member of, or are an active
+        employee of."""
+        self.ensure_one()
+        config = self.sudo()
+        user = user.sudo()
+        if user._is_superuser() or config.group_pos_manager_id in user.groups_id:
+            return True
+        # Same source of truth as the record rules (res.users.pts_crm_team_ids)
+        return bool(config.crm_team_id) and config.crm_team_id in user.pts_crm_team_ids
+
+    def _pts_check_team_access(self, user=None):
+        """Raise when the user may not use the shop. Without an explicit user,
+        sudo environments (internal/system calls) are trusted."""
+        if user is None:
+            if self.env.su:
+                return
+            user = self.env.user
+        for config in self:
+            if not config.sudo().crm_team_id:
+                raise UserError(_("Please set a Sales Team on the Point of Sale %s.", config.sudo().name))
+            if not config._pts_user_can_access(user):
+                raise AccessError(_(
+                    "You cannot access the Point of Sale %(pos)s: you are not a member of its "
+                    "Sales Team %(team)s.",
+                    pos=config.sudo().name, team=config.sudo().crm_team_id.name))
+
+    # ------------------------------------------------------------
+    # SESSION OPENING
+    # ------------------------------------------------------------
+
+    def _check_before_creating_new_session(self):
+        super()._check_before_creating_new_session()
+        self._pts_check_team_access()
+        for config in self:
+            if config.module_pos_hr and not config.crm_team_id.employee_ids:
+                raise UserError(_(
+                    "The Point of Sale %(pos)s uses 'Log in with Employees' but its Sales Team "
+                    "%(team)s has no employees. Add employees to the Sales Team first.",
+                    pos=config.name, team=config.crm_team_id.name))
+
+    def open_ui(self):
+        self._pts_check_team_access()
+        return super().open_ui()
+
+    def open_existing_session_cb(self):
+        self._pts_check_team_access()
+        return super().open_existing_session_cb()

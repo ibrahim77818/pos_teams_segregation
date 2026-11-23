@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sales Team mandatory in POS settings -->
+    <record id="res_config_settings_view_form_pts_sale" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.pos_sale.pos.teams.segregation</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="pos_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <field name="pos_crm_team_id" position="attributes">
+                <attribute name="required">pos_config_id</attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+            </field>
+            <field name="pos_crm_team_id" position="after">
+                <div class="text-muted mt8">Only members of this Sales Team (and POS Administrators) can access this shop.</div>
+            </field>
+        </field>
+    </record>
+
+    <!-- pos_hr: allowed employees limited to the Sales Team employees -->
+    <record id="res_config_settings_view_form_pts_hr" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.pos_hr.pos.teams.segregation</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="pos_hr.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <field name="pos_basic_employee_ids" position="attributes">
+                <attribute name="domain">[('company_id', '=', company_id), ('id', 'in', pos_pts_team_employee_ids)]</attribute>
+            </field>
+            <field name="pos_advanced_employee_ids" position="attributes">
+                <attribute name="domain">[('company_id', '=', company_id), ('id', 'in', pos_pts_team_employee_ids)]</attribute>
+            </field>
+            <field name="pos_basic_employee_ids" position="before">
+                <field name="pos_pts_team_employee_ids" invisible="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

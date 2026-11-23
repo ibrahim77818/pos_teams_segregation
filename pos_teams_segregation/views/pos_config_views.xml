@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sales Team right under the shop name: visible also in the "+ New Shop" dialog -->
+    <record id="pos_config_view_form_pts" model="ir.ui.view">
+        <field name="name">pos.config.form.pos.teams.segregation</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <div id="title" position="after">
+                <group name="pts_sales_team">
+                    <field name="company_id" invisible="1"/>
+                    <field name="crm_team_id" required="1"
+                           domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"
+                           options="{'no_create': True}"
+                           help="Only members of this Sales Team (and POS Administrators) can access this shop."/>
+                </group>
+            </div>
+        </field>
+    </record>
+
+    <!-- pos_hr: basic / advanced rights limited to the Sales Team employees -->
+    <record id="pos_config_form_view_inherit_pts_hr" model="ir.ui.view">
+        <field name="name">pos.config.form.pos_hr.pos.teams.segregation</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="pos_hr.pos_config_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <field name="basic_employee_ids" position="attributes">
+                <attribute name="domain">[('company_id', '=', company_id), ('id', 'in', pts_team_employee_ids)]</attribute>
+                <attribute name="help">Leave empty to allow every employee of the shop's Sales Team.</attribute>
+            </field>
+            <field name="advanced_employee_ids" position="attributes">
+                <attribute name="domain">[('company_id', '=', company_id), ('id', 'in', pts_team_employee_ids)]</attribute>
+            </field>
+            <field name="basic_employee_ids" position="before">
+                <field name="pts_team_employee_ids" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_pos_config_tree_pts" model="ir.ui.view">
+        <field name="name">pos.config.tree.pos.teams.segregation</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_config_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="crm_team_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_pos_config_search_pts" model="ir.ui.view">
+        <field name="name">pos.config.search.pos.teams.segregation</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_config_search"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="crm_team_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_pos_config_kanban_pts" model="ir.ui.view">
+        <field name="name">pos.config.kanban.pos.teams.segregation</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_config_kanban"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="crm_team_id"/>
+            </field>
+            <xpath expr="//div[hasclass('o_primary')]" position="after">
+                <div class="text-muted small" t-if="record.crm_team_id.raw_value">
+                    <i class="fa fa-users me-1" role="img" aria-label="Sales Team" title="Sales Team"/>
+                    <t t-esc="record.crm_team_id.value"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
